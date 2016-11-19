@@ -12,7 +12,7 @@ FORMAT: Tab delimited CSV files.
 
 DATA SHAPE AND STATS: 422937 news pages and divided up into:
 
-152746 	news of business category
+152746 	news of entertainment category
 108465 	news of science and technology category
 115920 	news of business category
  45615 	news of health category
