@@ -18,9 +18,6 @@ def normalize_text(s):
 
 
 def train_model():
-    news = pd.read_csv("../data_news_aggregator/news_data_uci.csv")
-    news['TEXT'] = [normalize_text(s) for s in news['TITLE']]  # normalize
-
     # pull the data into vectors
     vectorizer = CountVectorizer()
     x = vectorizer.fit_transform(news['TEXT'])
@@ -37,5 +34,31 @@ def train_model():
     pickle.dump(nb, open("model.pkl", "wb"))
 
 
+def get_related_article_idxs(x_1, story_1):
+    idxs = news['STORY'] == story_1
+    return idxs
+
+
+def get_liberal_idxs(idxs):
+    pubs = [s.lower() for s in news['PUBLISHER'][idxs]]
+    idxs_lib = np.ones((len(idxs), 1))
+    return idxs_lib
+
+
+def get_conservative_idxs(idxs):
+    pubs = [s.lower() for s in news['PUBLISHER'][idxs]]
+    idxs_cons = np.ones((len(idxs), 1))
+    return idxs_cons
+
+
 if __name__ == '__main__':
+    print('reading data...')
+    news = pd.read_csv("../data_news_aggregator/news_data_uci.csv")
+    news['TEXT'] = [normalize_text(s) for s in news['TITLE']]  # normalize
     train_model()
+
+    idxs_init = get_related_article_idxs(news['TEXT'][0], news['STORY'][0])
+    idxs_liberal = get_liberal_idxs(idxs_init)
+    idxs_conservative = get_conservative_idxs(idxs_init)
+    idxs_fair = np.logical_and(idxs_init, np.logical_not(np.logical_or(idxs_liberal, idxs_conservative)))
+    print("sums", np.sum(idxs_init), np.sum(idxs_liberal), np.sum(idxs_conservative), np.sum(idxs_fair))
