@@ -1,3 +1,4 @@
 data_news_aggregator/*.csv
 .idea
 py/web_scraping/newspaper
+web_app/myproject/*pycache*
