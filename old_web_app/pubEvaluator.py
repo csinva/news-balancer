@@ -9,31 +9,28 @@ from sklearn.cross_validation import train_test_split  # function for transformi
 from sklearn.feature_extraction.text import CountVectorizer  # function for encoding categories
 from sklearn.preprocessing import LabelEncoder
 
+
 def evaluatePubs(pubs, counts):
     print('reading data...')
-    pubData = pd.read_csv("../pubInfo.csv")
+    pubData = pd.read_csv("pubInfo.csv")
 
     maxC = max(counts)
     biases = [0 for i in range(len(pubs))]
-    creds  = [0 for i in range(len(pubs))]
+    creds = [0 for i in range(len(pubs))]
 
     knownPubs = {}
     for i in range(len(pubData['publisher'])):
         knownPubs[pubData['publisher'][i]] = (pubData['bias'][i], pubData['cred'][i])
 
     for i in range(len(pubs)):
-        if(pubs[i] in knownPubs.keys() and not math.isnan(knownPubs[pubs[i]][0])):
-                biases[i] = knownPubs[pubs[i]][0]
-                creds[i] = knownPubs[pubs[i]][1]
+        if pubs[i] in knownPubs.keys() and not math.isnan(knownPubs[pubs[i]][0]):
+            biases[i] = knownPubs[pubs[i]][0]
+            creds[i] = knownPubs[pubs[i]][1]
         else:
-            biases[i] = round((2*random() - 1)*100)
-            creds[i] = round(100*random()*(counts[i]/maxC)**(1/3))
+            biases[i] = round((2 * random() - 1) * 100)
+            creds[i] = round(100 * random() * (counts[i] / maxC) ** (1 / 3))
 
-#    print(pubs)
-#    print(counts)
-#    print(creds)
-#    print(biases)
-
-    d = {'PUBLISHER':pubs, 'COUNT':counts, 'BIAS':biases, 'CRED':creds}
-    return(pd.DataFrame(data = d))
-
+    d = {}
+    for i in range(len(pubs)):
+        d[pubs[i]] = (biases[i], creds[i])
+    return d

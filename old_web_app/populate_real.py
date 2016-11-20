@@ -12,7 +12,8 @@ from sklearn.naive_bayes import MultinomialNB  # function to split the data for 
 from sklearn.model_selection import train_test_split  # function for transforming documents into counts
 from sklearn.feature_extraction.text import CountVectorizer  # function for encoding categories
 from sklearn.preprocessing import LabelEncoder
-
+from pubEvaluator import evaluatePubs
+import math
 
 def normalize_text(s):
     # s = s.lower()
@@ -28,13 +29,19 @@ if __name__ == '__main__':
     news = pd.read_csv("../data_news_aggregator/news_data_uci.csv")
     news['TEXT'] = [normalize_text(s) for s in news['TITLE']]  # normalize
     # want to use news['TEXT','URL','PUBLISHER']
+    pubs = news['PUBLISHER']
+    pubs = [p for p in pubs]
+    uniquePubs, counts = np.unique(pubs, return_counts=True)
+    cred_dict = evaluatePubs(uniquePubs, counts)
 
     print('populating...')  # 422,419
     bias_arr = np.random.rand(422419, 1)
     cred_arr = np.random.rand(422419, 1)
     for i in range(1000):  # len(news['TEXT'])):
         # print(i)
-        d = Document(title=news['TEXT'][i], publisher=news['PUBLISHER'][i], link=news['URL'][i],
-                     cluster=news['STORY'][i], bias=bias_arr[i], cred=cred_arr[i])
-        d.save()
+        pub = news['PUBLISHER'][i]
+        if not pd.isnull(pub):
+            d = Document(title=news['TEXT'][i], publisher=pub, link=news['URL'][i],
+                         cluster=news['STORY'][i], bias=cred_dict[pub][0], cred=cred_dict[pub][1])
+            d.save()
     print("done populating...")

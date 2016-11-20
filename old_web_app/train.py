@@ -33,19 +33,3 @@ def train_model():
     print("score", nb.score(x_test, y_test))
     pickle.dump(nb, open("model.pkl", "wb"))
 
-
-def get_related_article_idxs(x_1, story_1):
-    idxs = news['STORY'] == story_1
-    return idxs
-
-
-def get_liberal_idxs(idxs):
-    pubs = [s.lower() for s in news['PUBLISHER'][idxs]]
-    idxs_lib = np.ones((len(idxs), 1))
-    return idxs_lib
-
-
-def get_conservative_idxs(idxs):
-    pubs = [s.lower() for s in news['PUBLISHER'][idxs]]
-    idxs_cons = np.ones((len(idxs), 1))
-    return idxs_cons

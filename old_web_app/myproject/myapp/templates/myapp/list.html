@@ -10,8 +10,8 @@
             crossorigin="anonymous"></script>
 </head>
 
-<body>
 
+<body>
 
 
 <div class="container">
@@ -22,24 +22,27 @@
         <em><a href="{{ main_doc.link }}">{{ main_doc.link }} </a> </em>
     </div>
 
-    <nav class="navbar text-center">
-            <div align="center" class="glyphicon glyphicon-ok text-center" aria-hidden="true"></div> = Trustworthy
-            <div class="glyphicon glyphicon-thumbs-down text-center" aria-hidden="true"></div> = Untrustworthy
-    </nav>
+    <div class="text-center" style="padding-top:0px">
+        <div align="center" class="glyphicon glyphicon-ok text-center" aria-hidden="true"></div>
+        = Trustworthy
+        <div class="glyphicon glyphicon-thumbs-down text-center" aria-hidden="true"></div>
+        = Untrustworthy
+    </div>
 
     <div class="col-md-4">
+        <h1> Liberal </h1>
         <div class="jumbotron"
              style="padding-top:5px; padding-left:5px; text-align:left; font-size:.9em; background-color:rgba(0, 50, 150, .2) !important">
             {% for document in docs_lib %}
-                <li>
-                    <em>{{ document.publisher }}</em> <a href="{{ document.link }}">{{ document.title }}</a>
-                    {% if document.cred > .5 %}
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    {% endif %}
-                    {% if document.cred < .1 %}
-                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                    {% endif %}
-                </li>
+            <li>
+                <em>{{ document.publisher }}</em> <a href="{{ document.link }}">{{ document.title }}</a>
+                {% if document.cred > 40 %}
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                {% endif %}
+                {% if document.cred < 10 %}
+                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                {% endif %}
+            </li>
             {% endfor %}
 
 
@@ -47,35 +50,37 @@
     </div>
 
     <div class="col-md-4" width=30%>
+        <h1 align="center"> Moderate </h1>
         <div class="jumbotron"
              style="padding-top:5px; padding-left:5px; text-align:left; font-size:.9em; background-color:rgba(150, 0, 100, .2) !important">
             {% for document in docs_mid %}
-                <li>
-                    <em>{{ document.publisher }}</em> <a href="{{ document.link }}">{{ document.title }}</a>
-                    {% if document.cred > .5 %}
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    {% endif %}
-                    {% if document.cred < .1 %}
-                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                    {% endif %}
-                </li>
+            <li>
+                <em>{{ document.publisher }}</em> <a href="{{ document.link }}">{{ document.title }}</a>
+                {% if document.cred > 40 %}
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                {% endif %}
+                {% if document.cred < 10 %}
+                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                {% endif %}
+            </li>
             {% endfor %}
         </div>
     </div>
 
     <div class="col-md-4">
+        <h1 align="right"> Conservative </h1>
         <div class="jumbotron"
              style="padding-top:5px; padding-left:5px; text-align:left; font-size:.9em; background-color:rgba(250, 0, 0, .2) !important">
             {% for document in docs_cons %}
-                <li>
-                    <em>{{ document.publisher }}</em> <a href="{{ document.link }}">{{ document.title }}</a>
-                    {% if document.cred > .5 %}
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    {% endif %}
-                    {% if document.cred < .1 %}
-                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                    {% endif %}
-                </li>
+            <li>
+                <em>{{ document.publisher }}</em> <a href="{{ document.link }}">{{ document.title }}</a>
+                {% if document.cred > 40 %}
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                {% endif %}
+                {% if document.cred < 10 %}
+                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                {% endif %}
+            </li>
             {% endfor %}
         </div>
     </div>

@@ -46,7 +46,7 @@ def get_liberal_idxs(idxs):
 
 
 def sortBy(X, Y):
-    return([x for (y, x) in sorted(zip(Y, X))])
+    return ([x for (y, x) in sorted(zip(Y, X))])
 
 
 def get_conservative_idxs(idxs):
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     uniquePubs = sortBy(uniquePubs, counts)
     counts = sorted(counts)
 
-    #PUBLISHER, COUNT, BIAS, CRED
+    # PUBLISHER, COUNT, BIAS, CRED
     pubData = pubEvaluator.evaluatePubs(uniquePubs, counts)
 
     idxs_init = get_related_article_idxs(news['TEXT'][0], news['STORY'][0])
