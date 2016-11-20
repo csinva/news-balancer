@@ -1,6 +1,11 @@
 from newspaper import build
 import pickle
 
+test = build(u'http://moneymorning.com/2014/03/10/todays-stock-market-news-earnings-calendar-15/')
+article = test.articles[0]
+print(article)
+print(article.images)
+print(article.imgs)
 # print('loading wsj...')
 # wsj = build('http://wsj.com')
 # pickle.dump(wsj, open("wsj.pkl", "wb"))
