@@ -7,14 +7,17 @@ from django.core.urlresolvers import reverse
 from myproject.myapp.models import Document
 from myproject.myapp.forms import DocumentForm
 
-def list(request):
 
+def list(request):
     # Load documents for the list page
     documents = Document.objects.all()
+    main_doc = Document.objects.order_by('?').first()
+    tit1 = main_doc.title
+    docs_remaining = Document.objects.exclude(title=tit1)
 
     # Render list page with the documents and the form
     return render_to_response(
         'myapp/list.html',
-        {'documents': documents},
+        {'documents': documents, 'main_doc': main_doc, 'docs_remaining': docs_remaining},
         context_instance=RequestContext(request)
     )

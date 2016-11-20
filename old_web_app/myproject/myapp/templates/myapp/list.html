@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<h1> Uploading Example </h1>
+<h1> All Docs </h1>
 <!-- List of uploaded documents -->
 {% if documents %}
 <ul>
@@ -24,7 +24,15 @@
 <p>No documents.</p>
 {% endif %}
 
+<h1> Main Doc </h1>
+{{ main_doc.title }}
 
+<h1> Remaining Docs </h1>
+<ul>
+    {% for document in docs_remaining %}
+    <li><a href="{{ document.title }}">{{ document.title }}</a></li>
+    {% endfor %}
+</ul>
 </body>
 
 </html> 
