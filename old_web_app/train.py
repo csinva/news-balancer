@@ -24,20 +24,22 @@ def train_model():
     vocab = vectorizer.fit(news["TEXT"])
     pickle.dump(vocab, open("vocab.pkl", "wb"))
 
-    x = vectorizer.fit_transform(news['TEXT'])
-
+    # pull the data into vectors
+    tits = news["TEXT"][:1000]
+    stories = news["STORY"][:1000]
+    vectorizer = CountVectorizer()
+    x = vectorizer.fit_transform(tits)
 
     encoder = LabelEncoder()
-    y = "dxyGGb4iN9Cs9aMZTKQpJeoiQfruM"
+    y = encoder.fit_transform(stories)
 
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.1)  # split into train and test sets
+    print("x_shape,y_shape", x.shape, y.shape)
 
     nb = MultinomialNB()
     nb.fit(x, y)
 
-    print("score", nb.score(x_test, y_test))
+    print("score", nb.score(x, y))
     pickle.dump(nb, open("model.pkl", "wb"))
-
 
 
 if __name__ == "__main__":
