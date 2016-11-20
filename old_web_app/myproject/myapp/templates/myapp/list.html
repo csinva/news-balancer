@@ -14,6 +14,11 @@
 
 <body>
 
+<form method="POST" action="/myapp/search/">
+    {% csrf_token %}
+    <input type="text" name="textfield">
+    <button type="submit">Search</button>
+</form>
 
 <div class="container">
     <div class="jumbotron" style="text-align:center; background-color:rgba(150, 200, 37, 0.2) !important">

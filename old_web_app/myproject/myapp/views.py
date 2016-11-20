@@ -3,6 +3,28 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from myproject.myapp.models import Document
 import random
+from django.shortcuts import render
+from django.shortcuts import HttpResponse
+from .models import Document
+from django.core.exceptions import *
+
+
+def search(request):
+    print('searching....')
+    if request.method == 'POST':
+        search_title = request.POST.get('textfield', None)
+        print("search_id", search_title)
+        try:
+            user = Document.objects.get(title=search_title)
+            # do something with user
+            html = ("<H1>%s</H1>", user)
+            return HttpResponse(html)
+        except Document.DoesNotExist:
+            print('err')
+        print('rendering...')
+        return render_to_response('myapp/list.html')
+    else:
+        return render(request, 'list.html')
 
 
 def list(request):
