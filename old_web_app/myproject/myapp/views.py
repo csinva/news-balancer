@@ -17,21 +17,19 @@ def search(request):
     search_title = request.POST.get('textfield', None)
     print("search_id", search_title)
     nb = pickle.load(open("model.pkl", "rb"))
-    vec = pickle.load(open("vocab.pkl", "rb"))
+    voc = pickle.load(open("vocab.pkl", "rb"))
+    encoder = pickle.load(open("encoder.pkl", "rb"))
 
-    '''
     print("nb", nb)
     tit = normalize_text(search_title)
     print("tit", tit)
-    # vectorizer = CountVectorizer()
-    # vectorizer.set_params(vocabulary=vocab)
-    # x = vectorizer.fit_transform(tit)
-    x = vec.fit_transform(tit)
-    print("x.shape", x.shape)
-    y = nb.predict(x)
+    # tit = "fed official says weak data caused by weather should not slow taper"
+    vectorizer = CountVectorizer(vocabulary=voc)
+    x = vectorizer.fit_transform([tit])
+    y = encoder.inverse_transform(nb.predict(x)[0])
     print("y", y)
-    '''
-    y = Document.objects.order_by('?').first().cluster
+
+    # y = Document.objects.order_by('?').first().cluster
 
     # Load documents for the list page
     main_doc = Document(title=search_title, publisher="", link="",

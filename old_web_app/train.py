@@ -19,19 +19,20 @@ def normalize_text(s):
 
 def train_model():
     # pull the data into vectors
-    vectorizer = CountVectorizer()
-
-    vocab = vectorizer.fit(news["TEXT"])
-    pickle.dump(vocab, open("vocab.pkl", "wb"))
-
-    # pull the data into vectors
     tits = news["TEXT"][:1000]
     stories = news["STORY"][:1000]
     vectorizer = CountVectorizer()
     x = vectorizer.fit_transform(tits)
-
     encoder = LabelEncoder()
     y = encoder.fit_transform(stories)
+    pickle.dump(encoder, open("encoder.pkl", "wb"))
+
+    # save voc
+    analyze = vectorizer.build_analyzer()
+    voc = set(analyze(tits[0]))
+    for i in range(len(tits)):
+        voc.update(analyze(tits[i]))
+    pickle.dump(voc, open("vocab.pkl", "wb"))
 
     print("x_shape,y_shape", x.shape, y.shape)
 
