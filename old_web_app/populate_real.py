@@ -43,6 +43,7 @@ if __name__ == '__main__':
     print('reading data...')
     news = pd.read_csv("../data_news_aggregator/news_data_uci.csv")
     news['TEXT'] = [normalize_text(s) for s in news['TITLE']]  # normalize
+
     # want to use news['TEXT','URL','PUBLISHER']
     pubs = news['PUBLISHER']
     pubs = [p for p in pubs]

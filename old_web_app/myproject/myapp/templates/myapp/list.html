@@ -14,25 +14,32 @@
 
 <body>
 
-<form method="POST" action="/myapp/search/">
-    {% csrf_token %}
-    <input type="text" name="textfield">
-    <button type="submit">Search</button>
-</form>
 
 <div class="container">
     <div class="jumbotron" style="text-align:center; background-color:rgba(150, 200, 37, 0.2) !important">
-        <h1 style="font-size:7.2em">    News <i class="fa fa-balance-scale" aria-hidden="true"></i> Balancer</h1>
+        <h1 style="font-size:6em">    News <i class="fa fa-balance-scale" aria-hidden="true"></i> Balancer</h1>
         <h3><u>Article: {{ main_doc.title }} </u></h3> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
         <em>Source: {{ main_doc.publisher }} </em>
         <em><a href="{{ main_doc.link }}">{{ main_doc.link }} </a> </em>
     </div>
 
     <div class="text-center" style="padding-top:0px">
-        <div align="center" class="glyphicon glyphicon-ok text-center" aria-hidden="true"></div>
-        = Trustworthy
-        <div class="glyphicon glyphicon-thumbs-down text-center" aria-hidden="true"></div>
-        = Untrustworthy
+        <form method="POST" action="/myapp/search/">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="input-group">
+                  <input type="text" name="textfield" class="form-control" placeholder="Search for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Go!</button>
+                  </span>
+                </div><!-- /input-group -->
+              </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+            <div align="center" class="glyphicon glyphicon-ok text-center" aria-hidden="true"></div>= Trustworthy
+            <div class="glyphicon glyphicon-thumbs-down text-center" aria-hidden="true"></div>= Untrustworthy
+        </form>
+
     </div>
 
     <div class="col-md-4">
