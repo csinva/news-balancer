@@ -18,9 +18,28 @@ def normalize_text(s):
 
 
 def train_model():
-    # pull the data into vectors
-    tits = news["TEXT"][:1000]
-    stories = news["STORY"][:1000]
+    idxs = [False for i in range(len(news['STORY']))]
+    idxs = news["STORY"] == "dM5lJS_3o5WVi3Msw6l8yvek3qu2M"
+    idxs |= news["STORY"] == "dvXpoeHHC3Eh4CMUx4PxTjcvbPZNM"
+    idxs |= news["STORY"] == "dlLYTMlYRD9PexMYGrncsueKjZmMM"
+    idxs |= news["STORY"] == "dMPYwYKkTueEQ5MwewRLr9q1Ye6rM"
+    idxs |= news["STORY"] == "d2OyTeAXDFQpb3M9Cr_Ftde6Ig0aM"
+    for i in range(1000):
+        idxs[i] = True
+
+    print(len(idxs))
+
+    tits = []
+    stories = []
+
+    for i in range(len(idxs)):
+        if (idxs[i]):
+            tits.append(news["TEXT"][i])
+            stories.append(news["STORY"][i])
+
+    # tits = news["TEXT"][idxs]
+    # print("len tits", len(tits))
+    # stories = news["STORY"][idxs]
     vectorizer = CountVectorizer()
     x = vectorizer.fit_transform(tits)
     encoder = LabelEncoder()

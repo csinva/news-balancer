@@ -59,7 +59,7 @@ def search(request):
     # Render list page with the documents and the form
     num1 = 45 + random.randint(0, 20)
     print("num1", num1)
-    num2 = 100-num1
+    num2 = 100 - num1
     return render_to_response(
         'myapp/list.html',
         {'main_doc': main_doc, 'docs_lib': docs_lib, 'docs_mid': docs_mid,
@@ -96,7 +96,7 @@ def list(request):
     print('num_docs_remaining', docs_count_3)
     # Render list page with the documents and the form
     num1 = 45 + random.randint(0, 20)
-    num2 = 100-num1
+    num2 = 100 - num1
     return render_to_response(
         'myapp/list.html',
         {'main_doc': main_doc, 'docs_lib': docs_lib, 'docs_mid': docs_mid,

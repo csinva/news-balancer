@@ -54,12 +54,28 @@ if __name__ == '__main__':
     count = 0
     bias_arr = np.random.rand(422419, 1)
     cred_arr = np.random.rand(422419, 1)
-    for i in range(1000):  # len(news['TEXT'])):
-        # print(i)
-        pub = news['PUBLISHER'][i]
-        if not pd.isnull(pub):  # and url_is_valid(news['URL'][i]):
-            count += 1
-            d = Document(title=news['TEXT'][i], publisher=pub, link=news['URL'][i],
-                         cluster=news['STORY'][i], bias=cred_dict[pub][0], cred=cred_dict[pub][1])
-            d.save()
+
+    idxs = [False for i in range(len(news['STORY']))]
+    idxs = news["STORY"] == "dM5lJS_3o5WVi3Msw6l8yvek3qu2M"
+    idxs |= news["STORY"] == "dvXpoeHHC3Eh4CMUx4PxTjcvbPZNM"
+    idxs |= news["STORY"] == "dlLYTMlYRD9PexMYGrncsueKjZmMM"
+    idxs |= news["STORY"] == "dMPYwYKkTueEQ5MwewRLr9q1Ye6rM"
+    idxs |= news["STORY"] == "d2OyTeAXDFQpb3M9Cr_Ftde6Ig0aM"
+    for i in range(1000):
+        idxs[i] = True
+
+    print(len(idxs))
+
+    tits = []
+    stories = []
+
+    for i in range(len(idxs)):  # len(news['TEXT'])):
+        if (idxs[i]):
+            # print(i)
+            pub = news['PUBLISHER'][i]
+            if not pd.isnull(pub):  # and url_is_valid(news['URL'][i]):
+                count += 1
+                d = Document(title=news['TEXT'][i], publisher=pub, link=news['URL'][i],
+                             cluster=news['STORY'][i], bias=cred_dict[pub][0], cred=cred_dict[pub][1])
+                d.save()
     print("done populating...", count)
