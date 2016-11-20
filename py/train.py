@@ -45,6 +45,10 @@ def get_liberal_idxs(idxs):
     return idxs_lib
 
 
+def sortBy(X, Y):
+    return([x for (y, x) in sorted(zip(Y, X))])
+
+
 def get_conservative_idxs(idxs):
     pubs = [s.lower() for s in news['PUBLISHER'][idxs]]
     idxs_cons = np.ones((len(idxs), 1))
@@ -56,6 +60,18 @@ if __name__ == '__main__':
     news = pd.read_csv("../data_news_aggregator/news_data_uci.csv")
     news['TEXT'] = [normalize_text(s) for s in news['TITLE']]  # normalize
     train_model()
+
+    pubs = news['PUBLISHER']
+    pubs = [p for p in pubs]
+    print(pubs)
+
+    uniquePubs, counts = np.unique(pubs, return_counts=True)
+
+    uniquePubs = sortBy(uniquePubs, counts)
+    counts = sorted(counts)
+
+    #PUBLISHER, COUNT, BIAS, CRED
+    pubData = pubEvaluator.evaluatePubs(uniquePubs, counts)
 
     idxs_init = get_related_article_idxs(news['TEXT'][0], news['STORY'][0])
     idxs_liberal = get_liberal_idxs(idxs_init)
