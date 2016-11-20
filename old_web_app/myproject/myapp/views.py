@@ -57,10 +57,13 @@ def search(request):
                              else -(x.cred + 1e6)))
     print('num_docs_remaining', docs_count_3)
     # Render list page with the documents and the form
+    num1 = 45 + random.randint(0, 20)
+    print("num1", num1)
+    num2 = 100-num1
     return render_to_response(
         'myapp/list.html',
         {'main_doc': main_doc, 'docs_lib': docs_lib, 'docs_mid': docs_mid,
-         'docs_cons': docs_cons},
+         'docs_cons': docs_cons, 'num1': num1, 'num2': num2},
         context_instance=RequestContext(request)
     )
 
@@ -92,9 +95,11 @@ def list(request):
                              else -(x.cred + 1e6)))
     print('num_docs_remaining', docs_count_3)
     # Render list page with the documents and the form
+    num1 = 45 + random.randint(0, 20)
+    num2 = 100-num1
     return render_to_response(
         'myapp/list.html',
         {'main_doc': main_doc, 'docs_lib': docs_lib, 'docs_mid': docs_mid,
-         'docs_cons': docs_cons},
+         'docs_cons': docs_cons, 'num1': num1, 'num2': num2},
         context_instance=RequestContext(request)
     )

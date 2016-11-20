@@ -17,7 +17,8 @@
 
 <div class="container">
     <div class="jumbotron" style="text-align:center; background-color:rgba(150, 200, 37, 0.2) !important">
-        <h1 style="font-size:6em"> News <i class="fa fa-balance-scale" aria-hidden="true"></i> Balancer</h1>
+        <a href="/myapp/list" class="header" style="text-decoration:none;color:black;font-size:6em"> News <i
+                class="fa fa-balance-scale" aria-hidden="true"></i> Balancer</a>
         <h3><u>Article: {{ main_doc.title }} </u></h3> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
         <em>Source: {{ main_doc.publisher }} </em>
         <em><a href="{{ main_doc.link }}">{{ main_doc.link }} </a> </em>
@@ -36,13 +37,23 @@
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
             </div><!-- /.row -->
-            <div align="center" class="glyphicon glyphicon-ok text-center" aria-hidden="true"></div>
+        </form>
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:{{num1}}%">
+        </div>
+        <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" style="width:{{num2}}%">
+        </div>
+
+    </div>
+        <div class="text-center" style="padding-top:0px">
+
+                <div align="center" class="glyphicon glyphicon-ok text-center" aria-hidden="true"></div>
             = Trustworthy
             <div class="glyphicon glyphicon-thumbs-down text-center" aria-hidden="true"></div>
             = Untrustworthy
-        </form>
-
-    </div>
+            </div>
 
     <div class="col-md-4">
         <h1> Liberal </h1>
