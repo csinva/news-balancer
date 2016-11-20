@@ -2,12 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Minimal Django File Upload Example</title>
+    <title>News Evaluator</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/68b216298f.js"></script>
 </head>
 
 
@@ -16,7 +17,7 @@
 
 <div class="container">
     <div class="jumbotron" style="text-align:center; background-color:rgba(150, 200, 37, 0.2) !important">
-        <h1 style="font-size:7.2em">News Evaluator</h1>
+        <h1 style="font-size:7.2em">    News <i class="fa fa-balance-scale" aria-hidden="true"></i> Balancer</h1>
         <h3><u>Article: {{ main_doc.title }} </u></h3> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
         <em>Source: {{ main_doc.publisher }} </em>
         <em><a href="{{ main_doc.link }}">{{ main_doc.link }} </a> </em>
