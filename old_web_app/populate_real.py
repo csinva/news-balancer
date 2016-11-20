@@ -15,6 +15,21 @@ from sklearn.preprocessing import LabelEncoder
 from pubEvaluator import evaluatePubs
 import math
 
+import urllib.request
+
+
+def url_is_valid(url):
+    try:
+        connection = urllib.request.urlopen(url)
+        code = connection.getcode()
+        connection.close()
+    except urllib.request.HTTPError as e:
+        code = e.getcode()
+    except Exception as e:
+        code = 404
+    return not code == 404
+
+
 def normalize_text(s):
     # s = s.lower()
     # remove punctuation that is not word-internal (e.g., hyphens, apostrophes)
@@ -35,13 +50,15 @@ if __name__ == '__main__':
     cred_dict = evaluatePubs(uniquePubs, counts)
 
     print('populating...')  # 422,419
+    count = 0
     bias_arr = np.random.rand(422419, 1)
     cred_arr = np.random.rand(422419, 1)
     for i in range(1000):  # len(news['TEXT'])):
         # print(i)
         pub = news['PUBLISHER'][i]
-        if not pd.isnull(pub):
+        if not pd.isnull(pub):  # and url_is_valid(news['URL'][i]):
+            count += 1
             d = Document(title=news['TEXT'][i], publisher=pub, link=news['URL'][i],
                          cluster=news['STORY'][i], bias=cred_dict[pub][0], cred=cred_dict[pub][1])
             d.save()
-    print("done populating...")
+    print("done populating...", count)
