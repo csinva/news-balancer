@@ -10,51 +10,44 @@
             crossorigin="anonymous"></script>
 </head>
 
-
+<body>
 <div class="container">
-  <div class="jumbotron" style="text-align:center; background-color:rgba(150, 200, 37, 0.2) !important">
-    <h1 style="font-size:7.2em">News Classifier</h1>
-      <h3>Article: {{ main_doc.title }} </h3>
-      <em>Source: {{ main_doc.publisher}}</em>
-      <em><a href="{{ main_doc.link }}">{{ main_doc.link }} </a> </em>
-  </div>
-
-
-
-  <div class="col-md-3">
-    <div class="jumbotron" style="padding-top:5px; padding-left:5px; text-align:left; font-size:7.2em; background-color:rgba(100, 0, 150, .2) !important">
-      <h2>QK SHDFKSEF ASEFKSHEF SEF</h2>
+    <div class="jumbotron" style="text-align:center; background-color:rgba(150, 200, 37, 0.2) !important">
+        <h1 style="font-size:7.2em">News Classifier</h1>
+        <h3>Article: {{ main_doc.title }} </h3>
+        <em>Source: {{ main_doc.publisher }} </em>
+        <em><a href="{{ main_doc.link }}">{{ main_doc.link }} </a> </em>
     </div>
-  </div>
 
-  <div class="col-md-3">
-    <div class="jumbotron" style="padding-top:5px; padding-left:5px; text-align:left; font-size:7.2em; background-color:rgba(150, 0, 100, .2) !important">
-      <h2>QK SHDFKSEF ASEFKSHEF SEF</h2>
-    </div>
-  </div>
 
-  <div class="col-md-3">
-    <div class="jumbotron" style="padding-top:5px; padding-left:5px; text-align:left; font-size:7.2em; background-color:rgba(250, 0, 0, .2) !important">
-      <h2>QK SHDFKSEF ASEFKSHEF SEF</h2>
+    <div class="col-md-4">
+        <div class="jumbotron"
+             style="padding-top:5px; padding-left:5px; text-align:left; font-size:.5em; background-color:rgba(100, 0, 150, .2) !important">
+            {% for document in docs_lib %}
+                <li> <em>{{ document.publisher }}</em> <a href="{{ document.title }}">{{ document.title }}</a></li>
+            {% endfor %}
+        </div>
     </div>
-  </div>
+
+    <div class="col-md-4" width=30%>
+        <div class="jumbotron"
+             style="padding-top:5px; padding-left:5px; text-align:left; font-size:.5em; background-color:rgba(150, 0, 100, .2) !important">
+            {% for document in docs_mid %}
+                <li> <em>{{ document.publisher }}</em> <a href="{{ document.title }}">{{ document.title }}</a> {{ document.cred}}</li>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="jumbotron"
+             style="padding-top:5px; padding-left:5px; text-align:left; font-size:.5em; background-color:rgba(250, 0, 0, .2) !important">
+            {% for document in docs_cons %}
+                <li> <em>{{ document.publisher }}</em> <a href="{{ document.title }}">{{ document.title }}</a></li>
+            {% endfor %}
+        </div>
+    </div>
 
 </div>
-
-<body>
-<h1> Main Doc </h1>
-{{ main_doc.title }}
-
-{% if docs_remaining %}
-<h1> Remaining Docs </h1>
-<ul>
-    {% for document in docs_remaining %}
-    <li><a href="{{ document.title }}">{{ document.title }}</a></li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No documents.</p>
-{% endif %}
 
 </body>
 

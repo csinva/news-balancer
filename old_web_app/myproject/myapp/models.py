@@ -7,3 +7,5 @@ class Document(models.Model):
     publisher = models.CharField(max_length=1000, default="")
     link = models.CharField(max_length=1000, default="")
     cluster = models.CharField(max_length=1000, default="")
+    bias = models.FloatField(default=.0)
+    cred = models.FloatField(default=.5)

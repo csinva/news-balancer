@@ -30,8 +30,11 @@ if __name__ == '__main__':
     # want to use news['TEXT','URL','PUBLISHER']
 
     print('populating...')  # 422,419
+    bias_arr = np.random.rand(422419, 1)
+    cred_arr = np.random.rand(422419, 1)
     for i in range(1000):  # len(news['TEXT'])):
         # print(i)
-        d = Document(title=news['TEXT'][i], publisher=news['PUBLISHER'][i], link=news['URL'][i], cluster=news['STORY'][i])
+        d = Document(title=news['TEXT'][i], publisher=news['PUBLISHER'][i], link=news['URL'][i],
+                     cluster=news['STORY'][i], bias=bias_arr[i], cred=cred_arr[i])
         d.save()
     print("done populating...")
