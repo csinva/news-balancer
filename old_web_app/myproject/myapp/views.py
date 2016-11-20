@@ -13,8 +13,11 @@ def list(request):
     documents = Document.objects.all()
     main_doc = Document.objects.order_by('?').first()
     tit1 = main_doc.title
-    docs_remaining = Document.objects.exclude(title=tit1)
-
+    cluster = main_doc.cluster
+    print('title', tit1)
+    print('cluster', cluster)
+    docs_remaining = Document.objects.exclude(title=tit1).filter(cluster=cluster)
+    print('num_docs_remaining', len(docs_remaining))
     # Render list page with the documents and the form
     return render_to_response(
         'myapp/list.html',
