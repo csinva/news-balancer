@@ -1,8 +1,9 @@
 # usage
 - `python3 manage.py runserver`
 - visit `localhost:8000/`
-    
+   
 # description
+![alt text](https://github.com/csinva/news-balancer/blob/master/screenshot.png "Logo Title Text 1")
 ## Inspiration
 America is more divided than ever. In today's world incorrect news sources and politically biased articles stand in the way of a clear understanding of contemporary issues. In fact, the absence of differing viewpoints in today's media has led to echochambers in which peoples prejudices and beliefs are repeatedly confirmed. This leads to a lack of understanding between different groups that can breed discrimination and intolerance.
 
@@ -21,6 +22,3 @@ News Balancer would best work as an extension for news sites that people already
 - `python manage.py makemigrations`
 - `python manage.py migrate`
 - `python manage.py syncdb`
-
-# references
-- bootstrap table: http://jsfiddle.net/djhvscf/tdow66ef/3/
