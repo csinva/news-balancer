@@ -1,79 +1,30 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Minimal Django File Upload Example</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	</head>
+<head>
+    <meta charset="utf-8">
+    <title>Minimal Django File Upload Example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+<h1> Uploading Example </h1>
+<!-- List of uploaded documents -->
+{% if documents %}
+<ul>
+    {% for document in documents %}
+    <li><a href="{{ document.title }}">{{ document.title }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No documents.</p>
+{% endif %}
 
 
-
-
-    col = rgba(255, 0, 0, 0)
-
-<div class="container">   </div>
-
-<div class="container">
-  <div class="jumbotron" style="text-align:center; background-color:rgba(150, 200, 37, 0.2) !important">
-    <h1 style="font-size:7.2em">News Classifier</h1>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Not a button</a></p>
-
-  </div>
-
-  <div class="col-md-2">
-    <div class="jumbotron" style="text-align:center; font-size:7.2em; background-color:rgba(calc(100*2), 0, 37, 0.2) !important">
-      <h2>QK SHDFKSEF ASEFKSHEF SEF</h2>
-    </div>
-  </div>
-
-  <div class="col-md-2">
-    <div class="jumbotron" style="text-align:center; font-size:7.2em; background-color:rgba(0, 0, 100, 0.2) !important">
-      <h2>QKSH DFK SEF ASEF  K SHEF SEF</h2>
-    </div>
-  </div>
-
-  <div class="col-md-2">
-     color(.5)
-  </div>
-  <div class="col-md-2">
-    "color(.5)"
-  </div>
-  <div class="col-md-2">
-    col
-  </div>
-  <div class="col-md-2">
-  </div>
-</div>
-
-
-
-	<body>
-		<h1> Uploading Example </h1>
-		<!-- List of uploaded documents -->
-		{% if documents %}
-			<ul>
-			{% for document in documents %}
-				<li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
-			{% endfor %}
-			</ul>
-		{% else %}
-			<p>No documents.</p>
-		{% endif %}
-
-		<!-- Upload form. Note enctype attribute! -->
-		<form action="{% url "list" %}" method="post" enctype="multipart/form-data">
-			{% csrf_token %}
-			<p>{{ form.non_field_errors }}</p>
-			<p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
-			<p>
-				{{ form.docfile.errors }}
-				{{ form.docfile }}
-			</p>
-			<p><input type="submit" value="Upload" /></p>
-		</form>
-		
-	</body>
+</body>
 
 </html> 

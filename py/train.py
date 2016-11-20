@@ -61,4 +61,4 @@ if __name__ == '__main__':
     idxs_liberal = get_liberal_idxs(idxs_init)
     idxs_conservative = get_conservative_idxs(idxs_init)
     idxs_fair = np.logical_and(idxs_init, np.logical_not(np.logical_or(idxs_liberal, idxs_conservative)))
-    print("sums", np.sum(idxs_init), np.sum(idxs_liberal), np.sum(idxs_conservative), np.sum(idxs_fair))
+    # print("sums", np.sum(idxs_init), np.sum(idxs_liberal), np.sum(idxs_conservative), np.sum(idxs_fair))
